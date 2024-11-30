@@ -1,6 +1,6 @@
 # Task 1: Illustrating Decidability of a Computational Problem
 For this task I have chosen to illustrate the decidability of 
-$A_{DFA} = \{\langle B,w \rangle\ | B \text{ is a DFA that accepts string } w\}$.
+$A_{DFA} = \string{\langle B,w \rangle\ | B \text{ is a DFA that accepts string } w \string}$.
 
 
 ## String Representation
