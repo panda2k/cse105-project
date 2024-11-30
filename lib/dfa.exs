@@ -1,7 +1,10 @@
 defmodule Project.DFA do
   @doc"""
-  Parses a DFA json string to get the formal definition of states,
-  alphabet, transition function, start state, and accept states
+  Parses a JSON string representing <B, w> where B is any DFA and w 
+  is a string over the alphabet of B to run the computation on. From the string this
+  validates M and gets the formal definition of states,
+  alphabet, transition function, start state, and accept states while
+  also validating the string w to run the computation on is valid
 
   ## JSON DFA Format 
   {
@@ -16,15 +19,14 @@ defmodule Project.DFA do
   alphabet is an array of characters in the DFA's alphabet 
   transitions is an array of 3-tuples defining
   the DFA's transition function where the first string is the
-  starting state, the second string is the character being read,
-  and the third string is the destination state
+  current state, the second string is the character being read,
+  and the third string is the output state
   start_state is the start state of the DFA 
-  accept_states is an array representing the set of acceptance states in the DFA
-  
-  ## Examples
-  For an example, view `dfa_specs/ends_in_zero.json` which represents
-  the finite automaton in example 1.9, or `dfa_specs/start_and_end_same.json`
-  which represents the finite automaton in example 1.11
+  accept_states is an array representing the set of acceptance states in the DFA.
+  word is the string whose membership in the DFA will be tested
+
+  Returns the DFA with the arrays cast to sets and the transitions as an
+  adjacency list as well as the input string w
   """
   def parse_dfa(input) do
     %{ 
@@ -41,7 +43,19 @@ defmodule Project.DFA do
     accept_states = MapSet.new(accept_states)
     # map the transition 3 tuples into an adjacency list
     transitions = Enum.reduce(transitions, %{}, fn [start, label, dest], acc -> 
-      Map.update(acc, start, %{label => dest}, fn existing -> Map.put(existing, label, dest) end) 
+      Map.update(
+        acc,
+        start,
+        %{label => dest},
+        fn existing -> 
+          # if this state already has an existing transition with the same label (input char)
+          # raise an error
+          if Map.has_key?(existing, label) do
+            raise "A state cannot have two transitions with the same label"
+          end
+          Map.put(existing, label, dest) 
+        end
+      ) 
     end) 
 
     # assert that all accept states are members of states, aka accept_states subseteq states
@@ -84,8 +98,7 @@ defmodule Project.DFA do
   end
   
   @doc"""
-  Given the path to a DFA json file and an input string, decides whether
-  the input string is in the language accepted by the DFA.
+  Given the encoded <B, w>, decides whether w is in L(B)
 
   Assuming the input string is valid, the computation of it goes as follows:
   Start with the current state at start_state. Then, read the string right to left.

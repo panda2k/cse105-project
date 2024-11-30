@@ -1,4 +1,39 @@
 defmodule Project.MapReduce do
+  @doc"""
+  Parses a json string representing <M, w> where M is a Turing machine and
+  w is a string over M's input alphabet. Parses the JSON string to validate M and
+  to get the formal definition of states,
+  input + tape alphabet, transition function, start state, and accept state, and
+  reject state while also validating the input string w is valid.
+
+  ## JSON Turing Machine Format 
+  {
+    states: string[] 
+    input_alphabet: char[]
+    tape_alphabet: char[]
+    transitions: tuple<string, string, string, string, string>[]
+    start_state: string
+    accept_state: string
+    reject_state: string
+    word: string
+  }
+  states is an array of states in the Turing machine
+  input_alphabet is an array of characters in the Turing machines input alphabet
+  tape_alphabet is an array of characters in the Turing machines tape alphabet
+  transitions is an array of 5-tuples defining
+  the Turing machine's transition function where the first string is the
+  input state, the second string is the character being read,
+  and the third string is the character to write, the fourth string
+  is the direction to move the tape head ('R' | 'L') and the fifth string is the
+  output state.
+  start_state is the start state of the Turing machine
+  accept_state is the accepting state of the Turing machine
+  reject_state is the rejecting state of the Turing machine
+  word is the string input to the Turing machine
+
+  Returns the Turing machine with the arrays cast to sets and the transitions as an
+  adjacency list as well as the input string w
+  """
   def parse_tm(input) do 
     %{
       "states" => states,
@@ -18,8 +53,25 @@ defmodule Project.MapReduce do
 
     # map the transition [start state, read character, write character, tape direction, end state]
     transitions = Enum.reduce(transitions, %{}, fn [start, read, write, dir, dest], acc -> 
-      Map.update(acc, start, %{ read => {write, dir, dest} }, fn existing -> Map.put(existing, read, {write, dir, dest}) end)
+      Map.update(
+        acc,
+        start,
+        %{ read => {write, dir, dest} },
+        fn existing -> 
+          # if this state already has an existing transition with the read character
+          # raise an error
+          if Map.has_key?(existing, read) do
+            raise "A state cannot have two transitions with the same read character"
+          end
+          Map.put(existing, read, {write, dir, dest})
+        end
+      )
     end)
+
+    # assert that the input alphabet is a subset of the tape alphabet
+    if not MapSet.subset?(input_alphabet, tape_alphabet) do
+      raise "The input alphabet must be a subset of the tape alphabet"
+    end
 
     # assert that the accept state is in the states
     if not MapSet.member?(states, accept_state) do
@@ -68,7 +120,11 @@ defmodule Project.MapReduce do
     {states, input_alphabet, tape_alphabet, transitions, start_state, accept_state, reject_state, word}
   end
 
-  def serialize_tm({ states, input_alphabet, tape_alphabet, transitions, start_state, accept_state, reject_state, word }) do 
+  @doc"""
+  The inverse of parse_tm where it takes the outputs and can serialize
+  them back to the JSON format specified above.
+  """
+  def serialize_tm({states, input_alphabet, tape_alphabet, transitions, start_state, accept_state, reject_state, word}) do 
     %{
       "states" => states |> MapSet.to_list,
       "input_alphabet" => input_alphabet |> MapSet.to_list,
@@ -86,6 +142,12 @@ defmodule Project.MapReduce do
     } |> :json.encode
   end
 
+  @doc"""
+  For usage in generating the looping state in the mapping reduction. 
+  Given the set of existing states and a prefix, returns a new state
+  "<prefix>_<random 5 characters>" that doesn't already exist in the
+  set of states. 
+  """
   def new_state(states, prefix) do
     random_state = for _ <- 1..5, into: "#{prefix}_", do: <<Enum.random(?a..?z)>>
     if MapSet.member?(states, random_state) do
@@ -99,7 +161,8 @@ defmodule Project.MapReduce do
   Maps the Turing machine acceptance problem to the halting problem
   Given the input <M,w>, maps to <M', w> with the technique discussed in 
   class where if a computation were ever to go to the reject state,
-  it would loop instead.
+  it would loop instead. Outputs <M', w> in the same input string format
+  if the input is valid.
   """
   def map_reduce(input) do
     {
@@ -117,23 +180,38 @@ defmodule Project.MapReduce do
     states = MapSet.put(states, loop_state)
     
     # for every edge that goes to the reject state, go to a new loop state
-    transitions = Enum.reduce(transitions, %{}, fn {start, rules}, acc -> 
-        rules = Enum.reduce(rules, %{}, fn { read, { write, dir, dest } }, acc -> 
-          if dest == reject_state do
-            # if going to reject state, redirect to loop state
-            Map.put(acc, read, {write, dir, loop_state})
-          else
-            # if not going to reject state, leave it unchanged
-            Map.put(acc, read, {write, dir, dest }) 
-          end
+    transitions = transitions 
+      |> Enum.reduce(%{}, fn {start, rules}, acc -> 
+          rules = Enum.reduce(rules, %{}, fn { read, { write, dir, dest } }, acc -> 
+            if dest == reject_state do
+              # if going to reject state, redirect to loop state
+              Map.put(acc, read, {write, dir, loop_state})
+            else
+              # if not going to reject state, leave it unchanged
+              Map.put(acc, read, {write, dir, dest }) 
+            end
+          end)
+          Map.put(acc, start, rules)
         end)
-        Map.put(acc, start, rules)
-      end)
+      |> Map.put(loop_state, Enum.reduce(tape_alphabet, %{}, fn char, acc -> 
+        # now add in the transitions for the loop state, basically for
+        # every character in the tape alphabet loop back to loop_state
+        # leave the tape unchanged and move the tape head right
+        Map.put(acc, char, {char, "R", loop_state})
+      end))
 
     # output the formatted new turing machine
     serialize_tm({states, input_alphabet, tape_alphabet, transitions, start_state, accept_state, reject_state, word})
   end
 
+  @doc"""
+  Calls map_reduce with the first command line argument to this script.
+  If an error is thrown that means parsing failed, aka <M, w> is not a valid
+  representation of a Turing machine and input string over M's input
+  alphabet. In this case, const_tm is outputted which is not a member
+  of HALT_TM. If no error is thrown it returns the mapping of <M, w> from
+  A_TM to HALT_TM.
+  """
   def call do 
     try do
       map_reduce(System.argv() |> Enum.at(0, ""))
