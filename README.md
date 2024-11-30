@@ -354,7 +354,7 @@ should have the following state diagram:
 $\langle M', w \rangle \in HALT_{TM}$ because running the computation of $M'$
 on $w$ results in the following computations:
 
-Tape: $0000\_\_\_$, State: $q1$, Read pointer in position 0 
+Tape: $0000 \textunderscore \textunderscore \textunderscore$, State: $q1$, Read pointer in position 0 
 
 Tape: $\_000\_\_\_$, State: $q2$, Read pointer in position 1 
 
