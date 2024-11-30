@@ -250,49 +250,49 @@ and the string $w$ I have chosen is $w = 0000 = 0^{2^2}$
 such that $\langle M, w \rangle \in A_{TM}$ because $w \in L(A)$.
 To show $w \in L(A)$, the computation of $w$ on $M$ goes as follows (read pointer is 0 indexed):
 
-Tape: $0000\_\_\_$, State: $q1$, Read pointer in position 0 
+Tape: $0000\textunderscore \textunderscore \textunderscore $, State: $q1$, Read pointer in position 0 
 
-Tape: $\_000\_\_\_$, State: $q2$, Read pointer in position 1 
+Tape: $\textunderscore 000\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 1 
 
-Tape: $\_x00\_\_\_$, State: $q3$, Read pointer in position 2
+Tape: $\textunderscore x00\textunderscore \textunderscore \textunderscore $, State: $q3$, Read pointer in position 2
 
-Tape: $\_x00\_\_\_$, State: $q4$, Read pointer in position 3
+Tape: $\textunderscore x00\textunderscore \textunderscore \textunderscore $, State: $q4$, Read pointer in position 3
 
-Tape: $\_x0x\_\_\_$, State: $q3$, Read pointer in position 4
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q3$, Read pointer in position 4
 
-Tape: $\_x0x\_\_\_$, State: $q5$, Read pointer in position 3
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 3
 
-Tape: $\_x0x\_\_\_$, State: $q5$, Read pointer in position 2
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 2
 
-Tape: $\_x0x\_\_\_$, State: $q5$, Read pointer in position 1
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 1
 
-Tape: $\_x0x\_\_\_$, State: $q5$, Read pointer in position 0
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 0
 
-Tape: $\_x0x\_\_\_$, State: $q2$, Read pointer in position 1
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 1
 
-Tape: $\_x0x\_\_\_$, State: $q2$, Read pointer in position 2
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 2
 
-Tape: $\_xxx\_\_\_$, State: $q3$, Read pointer in position 3
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q3$, Read pointer in position 3
 
-Tape: $\_xxx\_\_\_$, State: $q3$, Read pointer in position 4
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q3$, Read pointer in position 4
 
-Tape: $\_xxx\_\_\_$, State: $q5$, Read pointer in position 3
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 3
 
-Tape: $\_xxx\_\_\_$, State: $q5$, Read pointer in position 2
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 2
 
-Tape: $\_xxx\_\_\_$, State: $q5$, Read pointer in position 1
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 1
 
-Tape: $\_xxx\_\_\_$, State: $q5$, Read pointer in position 0
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 0
 
-Tape: $\_xxx\_\_\_$, State: $q2$, Read pointer in position 1
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 1
 
-Tape: $\_xxx\_\_\_$, State: $q2$, Read pointer in position 2
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 2
 
-Tape: $\_xxx\_\_\_$, State: $q2$, Read pointer in position 3
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 3
 
-Tape: $\_xxx\_\_\_$, State: $q2$, Read pointer in position 4
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 4
 
-Tape: $\_xxx\_\_\_$, State: $q_{accept}$, Read pointer in position 5
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q_{accept}$, Read pointer in position 5
 
 The computation halts in $q_{accept}$, therefore $w \in L(M)$ and 
 $\langle M, w \rangle \in A_{TM}$.
@@ -356,47 +356,47 @@ on $w$ results in the following computations:
 
 Tape: $0000 \textunderscore \textunderscore \textunderscore$, State: $q1$, Read pointer in position 0 
 
-Tape: $\_000\_\_\_$, State: $q2$, Read pointer in position 1 
+Tape: $\textunderscore 000\textunderscore \textunderscore \textunderscore$, State: $q2$, Read pointer in position 1 
 
-Tape: $\_x00\_\_\_$, State: $q3$, Read pointer in position 2
+Tape: $\textunderscore x00\textunderscore \textunderscore \textunderscore $, State: $q3$, Read pointer in position 2
 
-Tape: $\_x00\_\_\_$, State: $q4$, Read pointer in position 3
+Tape: $\textunderscore x00\textunderscore \textunderscore \textunderscore $, State: $q4$, Read pointer in position 3
 
-Tape: $\_x0x\_\_\_$, State: $q3$, Read pointer in position 4
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q3$, Read pointer in position 4
 
-Tape: $\_x0x\_\_\_$, State: $q5$, Read pointer in position 3
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 3
 
-Tape: $\_x0x\_\_\_$, State: $q5$, Read pointer in position 2
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 2
 
-Tape: $\_x0x\_\_\_$, State: $q5$, Read pointer in position 1
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 1
 
-Tape: $\_x0x\_\_\_$, State: $q5$, Read pointer in position 0
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 0
 
-Tape: $\_x0x\_\_\_$, State: $q2$, Read pointer in position 1
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 1
 
-Tape: $\_x0x\_\_\_$, State: $q2$, Read pointer in position 2
+Tape: $\textunderscore x0x\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 2
 
-Tape: $\_xxx\_\_\_$, State: $q3$, Read pointer in position 3
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q3$, Read pointer in position 3
 
-Tape: $\_xxx\_\_\_$, State: $q3$, Read pointer in position 4
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q3$, Read pointer in position 4
 
-Tape: $\_xxx\_\_\_$, State: $q5$, Read pointer in position 3
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 3
 
-Tape: $\_xxx\_\_\_$, State: $q5$, Read pointer in position 2
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 2
 
-Tape: $\_xxx\_\_\_$, State: $q5$, Read pointer in position 1
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 1
 
-Tape: $\_xxx\_\_\_$, State: $q5$, Read pointer in position 0
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q5$, Read pointer in position 0
 
-Tape: $\_xxx\_\_\_$, State: $q2$, Read pointer in position 1
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 1
 
-Tape: $\_xxx\_\_\_$, State: $q2$, Read pointer in position 2
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 2
 
-Tape: $\_xxx\_\_\_$, State: $q2$, Read pointer in position 3
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 3
 
-Tape: $\_xxx\_\_\_$, State: $q2$, Read pointer in position 4
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q2$, Read pointer in position 4
 
-Tape: $\_xxx\_\_\_$, State: $q_{accept}$, Read pointer in position 5
+Tape: $\textunderscore xxx\textunderscore \textunderscore \textunderscore $, State: $q_{accept}$, Read pointer in position 5
 
 The computation of $w$ on $M'$ halts at $q_{accept}$, therefore 
 $\langle M', w \rangle \in HALT_{TM}$
@@ -468,9 +468,9 @@ input alphabet, take figure 3.8 from the textbook with the input string $w = \ep
 $\langle M, w \rangle \notin A_{TM}$ because the computation of $M$ on
 $w$ halts in $q_{reject}$ through the following steps:
 
-Tape: $\_\_\_$, State: $q1$, Read pointer in position 0 
+Tape: $\textunderscore \textunderscore \textunderscore $, State: $q1$, Read pointer in position 0 
 
-Tape: $\_\_\_$, State: $q_{reject}$, Read pointer in position 1 
+Tape: $\textunderscore \textunderscore \textunderscore $, State: $q_{reject}$, Read pointer in position 1 
 
 Given this $\langle M, w \rangle$, $x$ is the following JSON string:
 
@@ -523,13 +523,13 @@ when mapped with the program:
 $w$ should still be unchanged so we would get $\langle M', w \rangle$ which is not in $HALT_{TM}$ because
 the computation of $M'$ on $w$ goes as follows:
 
-Tape: $\_\_\_$, State: $q1$, Read pointer in position 0 
+Tape: $\textunderscore \textunderscore \textunderscore $, State: $q1$, Read pointer in position 0 
 
-Tape: $\_\_\_$, State: $q_{loop}$, Read pointer in position 1 
+Tape: $\textunderscore \textunderscore \textunderscore $, State: $q_{loop}$, Read pointer in position 1 
 
-Tape: $\_\_\_$, State: $q_{loop}$, Read pointer in position 2
+Tape: $\textunderscore \textunderscore \textunderscore $, State: $q_{loop}$, Read pointer in position 2
 
-Tape: $\_\_\_$, State: $q_{loop}$, Read pointer in position 3
+Tape: $\textunderscore \textunderscore \textunderscore $, State: $q_{loop}$, Read pointer in position 3
 
 This cycle would then continue on $q_{loop}$ forever and $M'$ would never halt on $w$, therefore making $\langle M', w \rangle \notin HALT_{TM}$.
 
