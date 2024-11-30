@@ -11,7 +11,10 @@
         in rec {
             devShell = pkgs.mkShell {
                 buildInputs = with pkgs; [
-                    elixir_1_16
+                    beam.packages.erlang_27.elixir_1_17
+                    lexical
+                    nodejs_23
+                    nodePackages."@tailwindcss/language-server"
                 ];
             };
         }

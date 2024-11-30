@@ -1,0 +1,38 @@
+{
+    "states": ["q1", "q2", "q3", "q4", "q5", "q_accept", "q_reject"],
+    "input_alphabet": ["0"],
+    "tape_alphabet": ["0", "x", "_"],
+    "transitions": [
+        ["q1", "_", "_", "R", "q_reject"],
+        ["q1", "x", "x", "R", "q_reject"],
+        ["q1", "0", "_", "R", "q2"],
+
+        ["q2", "_", "_", "R", "q_accept"],
+        ["q2", "x", "x", "R", "q2"],
+        ["q2", "0", "x", "R", "q3"],
+
+        ["q3", "_", "_", "L", "q5"],
+        ["q3", "x", "x", "R", "q3"],
+        ["q3", "0", "0", "R", "q4"],
+
+        ["q4", "_", "_", "R", "q_reject"],
+        ["q4", "x", "x", "R", "q4"],
+        ["q4", "0", "x", "R", "q3"],
+
+        ["q5", "_", "_", "R", "q2"],
+        ["q5", "x", "x", "L", "q5"],
+        ["q5", "0", "0", "L", "q5"],
+
+        ["q_accept", "_", "_", "R", "q_accept"],
+        ["q_accept", "x", "x", "R", "q_accept"],
+        ["q_accept", "0", "0", "R", "q_accept"],
+
+        ["q_reject", "_", "_", "R", "q_reject"],
+        ["q_reject", "x", "x", "R", "q_reject"],
+        ["q_reject", "0", "0", "R", "q_reject"]
+    ],
+    "start_state": "q1",
+    "accept_state": "q_accept",
+    "reject_state": "q_reject",
+    "word": "0000"
+}

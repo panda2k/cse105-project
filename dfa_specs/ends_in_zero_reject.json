@@ -8,5 +8,6 @@
         ["q2", "0", "q1"]
     ],
     "start_state": "q1",
-    "accept_states": ["q1"]
+    "accept_states": ["q1"],
+    "word": "00001"
 }
