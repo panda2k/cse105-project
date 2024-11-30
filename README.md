@@ -452,7 +452,7 @@ Here is the formatted output so it is easier to read:
 ```
 
 As you can see this JSON output correctly represents the mapped string $\langle M', w \rangle$
-with the outputted $M'$ having the same state diagram as drawn above. Therefore
+with the outputted $M'$ having the same specifications and state diagram as drawn above. Therefore
 the program has correctly mapped this example $\langle M, w \rangle$ 
 because $\langle M, w \rangle \in A_{TM} \iff \langle M', w \rangle \in HALT_{TM}$
 since $\langle M, w \rangle \in A_{TM}$, the program has correctly outputted $F(\langle M, w \rangle) = \langle M', w \rangle \in HALT_{TM}$.
@@ -583,7 +583,7 @@ Here is the formatted JSON for easier reading:
 ```
 
 As you can see this JSON output correctly represents the mapped string $\langle M', w \rangle$
-with the outputted $M'$ having the same state diagram as drawn above. Therefore
+with the outputted $M'$ having the same specifications and state diagram as drawn above. Therefore
 the program has correctly mapped this example $\langle M, w \rangle$ 
 because $\langle M, w \rangle \in A_{TM} \iff \langle M', w \rangle \in HALT_{TM}$ and
 since $\langle M, w \rangle \notin A_{TM}$, the program has correctly outputted $F(\langle M, w \rangle) = \langle M', w \rangle \notin HALT_{TM}$.
