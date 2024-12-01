@@ -130,6 +130,7 @@ passing it in as a command line arg with `cat`.
 ![Running the program on $x \notin A_{DFA}$](part-1-example-2.png)
 
 ## Video Explanation
+Watch the video [here](https://drive.google.com/file/d/1K4COR4XRZiL5YdFtcqDwM7mrDwHHy548/view?usp=sharing)
 
 ## Code
 If you'd like to read the code in a better viewing format than PDF, visit the file on [GitHub](https://github.com/panda2k/cse105-project/blob/main/lib/dfa.exs)
@@ -734,6 +735,7 @@ Note that `loop_state` / $q_{loop}$ is `q_loop_xgujl` because a random length-5 
 is appended to `q_loop_` just incase `q_loop` is already a state in $M$.
 
 ## Video Explanation
+Watch the video [here](https://drive.google.com/file/d/1tQZrZ3KLmUfWAijA374Y2W3_7WYxzhbG/view?usp=sharing)
 
 ## Code
 If you'd like to read the code in a better viewing format than PDF, visit the file on [GitHub](https://github.com/panda2k/cse105-project/blob/main/lib/map_reduce.exs)
