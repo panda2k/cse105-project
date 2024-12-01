@@ -15,6 +15,7 @@
                     lexical
                     nodejs_23
                     nodePackages."@tailwindcss/language-server"
+                    pandoc
                 ];
             };
         }
